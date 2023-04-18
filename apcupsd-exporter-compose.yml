@@ -1,0 +1,14 @@
+version: "3"
+services:
+  apcupsd-influxdb-exporter:
+    image: atribe/apcupsd-influxdb-exporter
+    container_name: apcupsd-influxdb-exporter
+    restart: always
+    environment:
+      WATTS: 900
+      APCUPSD_HOST: 192.168.1.2
+      INFLUXDB_HOST: 192.168.1.2
+      INTERVAL: 5
+      INFLUXDB_DATABASE: apcupsd
+      INFLUXDB_USER: username
+      INFLUXDB_PASSWORD: password
