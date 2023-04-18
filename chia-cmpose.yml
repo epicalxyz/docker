@@ -1,0 +1,21 @@
+version: "3.6"
+services:
+  chia:
+    container_name: chia
+    restart: unless-stopped
+    image: ghcr.io/chia-network/chia:latest
+    ports:
+      - 8444:8444
+    environment:
+      keys: /keys
+      TZ: Europe/Lisbon
+      upnp: false
+      log_to_file: true
+      healthcheck: false
+      plots_dir: /plots1:/plots2:/plots3
+    volumes:
+      - /home/username/.chia:/root/.chia
+      - /home/username/.machinaris/mnemonic.txt:/keys
+      - /mnt/hdda:/plots1
+      - /mnt/hddb:/plots2
+      - /mnt/hddc:/plots3
