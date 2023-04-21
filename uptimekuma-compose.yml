@@ -1,0 +1,13 @@
+version: "3.3"
+volumes:
+  uptime-kuma:
+    external: true
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:alpine
+    container_name: uptime-kuma
+    volumes:
+      - /home/username/docker/uptime-kuma:/app/data
+    ports:
+      - 3001:3001
+    restart: always
