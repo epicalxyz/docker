@@ -1,0 +1,18 @@
+version: "3"
+services:
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_NOTIFICATIONS=shoutrrr
+      - WATCHTOWER_NOTIFICATION_URL:discord://${DISCORD_TOKEN}@${DISCORD_ID}?title=Watchtower
+      - WATCHTOWER_NOTIFICATION_TEMPLATE= |-
+        {{range .}}{{.Time.Format "12-01-2020 15:04:05"}} ({{.Level}})':' {{.Message}}{{println}}{{end}}
+      - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=10
+      - WATCHTOWER_NOTIFICATIONS_HOSTNAME=watchtower
+      - WATCHTOWER_SCHEDULE=0 0 5 * * *
+      - WATCHTOWER_LABEL_ENABLE=false
+      - WATCHTOWER_CLEANUP=true
+    restart: always
