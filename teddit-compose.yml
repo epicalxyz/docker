@@ -1,0 +1,43 @@
+version: "3.8"
+services:
+  teddit:
+    container_name: teddit
+    image: teddit/teddit:latest
+    environment:
+      #- DOMAIN=127.0.0.1
+      - USE_HELMET=true
+      - USE_HELMET_HSTS=true
+      - TRUST_PROXY=true
+      - cache_control=true
+      - cache_control_interval=48
+      - REDIS_HOST=teddit-redis
+    ports:
+      - "8080:8080"
+    networks:
+      - teddit_net
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "wget",
+          "--no-verbose",
+          "--tries=1",
+          "--spider",
+          "http://localhost:8080/about",
+        ]
+      interval: 1m
+      timeout: 3s
+    depends_on:
+      - teddit-redis
+
+  teddit-redis:
+    container_name: teddit-redis
+    image: redis:6.2.5-alpine
+    command: redis-server
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    networks:
+      - teddit_net
+
+networks:
+  teddit_net:
