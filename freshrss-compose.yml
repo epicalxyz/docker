@@ -1,0 +1,14 @@
+version: "2.1"
+services:
+  freshrss:
+    image: lscr.io/linuxserver/freshrss:latest
+    container_name: freshrss
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Lisbon
+    volumes:
+      - /home/username/docker/freshrss/:/config
+    ports:
+      - 40000:80
+    restart: unless-stopped
