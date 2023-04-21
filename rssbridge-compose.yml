@@ -1,0 +1,10 @@
+version: "2"
+services:
+  rss-bridge:
+    image: rssbridge/rss-bridge:latest
+    container_name: rssbridge
+    volumes:
+      - /home/username/docker/rssbridge:/config
+    ports:
+      - 30000:80
+    restart: unless-stopped
