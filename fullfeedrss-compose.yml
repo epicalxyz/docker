@@ -1,0 +1,13 @@
+version: "3"
+services:
+  fullfeedrss:
+    container_name: fullfeedrss
+    image: heussd/fivefilters-full-text-rss:latest
+    environment:
+      - FTR_ADMIN_PASSWORD=1234 # Leave empty to disable admin section
+    volumes:
+      - /home/username/docker/fullfeedrss/rss-cache:/var/www/html/cache
+    ports:
+      - 50000:80
+volumes:
+  rss-cache:
