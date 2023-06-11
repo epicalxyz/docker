@@ -15,7 +15,7 @@ services:
       plots_dir: /plots1:/plots2:/plots3
     volumes:
       - /home/username/.chia:/root/.chia
-      - /home/username/.machinaris/mnemonic.txt:/keys
+      - /home/username/.chia/mnemonic.txt:/keys
       - /mnt/hdda:/plots1
       - /mnt/hddb:/plots2
       - /mnt/hddc:/plots3

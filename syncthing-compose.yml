@@ -1,0 +1,16 @@
+---
+version: "3"
+services:
+  syncthing:
+    image: syncthing/syncthing
+    container_name: syncthing
+    hostname: syncthing
+    environment:
+      - TZ=Europe/Lisbon
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /home/username/docker/syncthing/config:/config
+      - /mnt/hdd/:/syncthing
+    network_mode: host
+    restart: unless-stopped
