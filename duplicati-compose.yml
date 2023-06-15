@@ -1,0 +1,19 @@
+---
+version: "3"
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    hostname: duplicati
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Europe/Lisbon
+    volumes:
+      - /home/username/docker/duplicati/config:/config
+      - /home/username/docker:/docker-configs
+      - /mnt/destination/duplicati:/destination # backup destination
+      - /mnt/source:/source # backup source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
