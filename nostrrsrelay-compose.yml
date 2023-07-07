@@ -1,0 +1,20 @@
+version: "3"
+services:
+  Nostr_Relay:
+    container_name: Nostr_Relay
+    image: scsibug/nostr-rs-relay:latest
+    restart: unless-stopped
+    networks:
+      - bridge
+    ports:
+      - 7000:8080/tcp
+    volumes:
+      - /home/username/docker/config.toml:/usr/src/app/config.toml
+      - /home/username/docker/data:/usr/src/app/db
+    environment:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - TZ=Europe/Lisbon
+      - APP_USER=appuser
+      - RUST_LOG=info,nostr_rs_relay=info
+      - APP_DATA=/usr/src/app/db
+    command: /bin/sh -c "./nostr-rs-relay --db ${APP_DATA}"
