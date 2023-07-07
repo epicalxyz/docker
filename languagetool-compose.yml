@@ -1,0 +1,14 @@
+version: "3"
+services:
+  Languagetool:
+    container_name: Languagetool
+    image: erikvl87/languagetool:latest
+    restart: always
+    networks:
+      - bridge
+    ports:
+      - 8010:8010/tcp
+    environment:
+      - Java_Xms=512m
+      - Java_Xmx=2g
+    command: ["bash", "start.sh"]
