@@ -1,0 +1,26 @@
+# Also change the config.yml to:
+#   plot_directories:
+#  - /mnt/plots
+
+version: "3.7"
+services:
+  chia-gigahorse:
+    container_name: chia-gigahorse
+    restart: unless-stopped
+    image: ghcr.io/madmax43v3r/chia-gigahorse:1.8.2.giga22
+    ports:
+      - 8444:8444
+      - 8447:8447
+    environment:
+      - TZ=Europe/Lisbon
+      - CHIAPOS_MAX_CORES=8
+      - CHIAPOS_MAX_CUDA_DEVICES=1
+      - CHIAPOS_MAX_OPENCL_DEVICES=0
+      - CHIAPOS_RECOMPUTE_HOST=192.168.x.x
+      - PLOTS_DIR=/mnt/plots
+      - upnp=false
+      - log_to_file=true
+    volumes:
+      - /home/username/.chia/.chia_keys:/root/.chia_keys
+      - /home/username/.chia:/root/.chia
+      - /mnt/:/mnt/plots
