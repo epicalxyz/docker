@@ -12,10 +12,8 @@ services:
       upnp: false
       log_to_file: true
       healthcheck: false
-      plots_dir: /plots1:/plots2:/plots3
+      plots_dir: /plots
     volumes:
       - /home/username/.chia:/root/.chia
       - /home/username/.chia/mnemonic.txt:/keys
-      - /mnt/hdda:/plots1
-      - /mnt/hddb:/plots2
-      - /mnt/hddc:/plots3
+      - /mnt/:/plots
